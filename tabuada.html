@@ -1,0 +1,25 @@
+<meta charset="UTF-8">
+
+<script>
+	
+	function pulaLinha() {
+		document.write("<br>");	
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	fator = prompt('Fator:');
+	
+	for(var multiplicador = 1; multiplicador <= 10; multiplicador++) {
+		produto = fator * multiplicador;
+		mostra(fator + 'x' + multiplicador + '=' + produto);
+	}  
+		
+</script>
+
+
+
+
