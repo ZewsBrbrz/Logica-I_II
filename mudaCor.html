@@ -1,0 +1,101 @@
+<canvas width="600" height="400"></canvas>
+<br>
+Escolha uma cor <input type="color" name="input-1" id="cor">
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    var r=10
+    var desenha = false
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+    var cores= document.getElementById('cor');
+
+    function desenhaCirculo(evento) {
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+            if(desenha){    
+                if(evento.shiftKey){
+                    r=r+10
+                        if(r>=40){
+                        r=40
+                        }
+                    console.log(r);
+                }
+
+               if(evento.altKey){
+                    r=r-5
+                        if(r<=10){
+                            r=10
+                        }
+                    console.log(r);
+               }
+
+            pincel.fillStyle = cores.value;
+            pincel.beginPath();
+            pincel.arc(x, y, r, 0, 2 * 3.14);
+            pincel.fill();
+            console.log(x + ',' + y);
+        }
+        
+    }
+
+        function desenhaOn(){
+            desenha=true
+
+        }
+        function desenhaOff(){
+            desenha=false
+
+        }
+
+    tela.onclick = desenhaCirculo;
+
+
+    
+    tela.onmousedown = desenhaOn;
+    tela.onmouseup = desenhaOff;
+    tela.onmousemove=desenhaCirculo;
+
+    /*<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var desenha = false;
+
+  // atribuindo diretamente a função anônima
+   tela.onmousemove = function(evento) {
+
+        if(desenha) {
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = 'blue';
+            pincel.beginPath();
+            pincel.arc(x, y, 10, 0, 2 * 3.14);
+            pincel.fill();
+        }
+        console.log(x + ',' + y);
+    }
+
+    tela.onmousedown = function() {
+
+        desenha = true;
+    }
+
+     tela.onmouseup = function() {
+
+        desenha = false;
+    }
+*/
+
+</script>
+
+
+</script>

@@ -1,0 +1,58 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var raio = 10;
+    var ativar = true;
+    
+    var centro = [];  
+
+    var confereX = [centro[0]-raio,centro[0]+raio];
+    var confereY = [centro[1]-raio,centro[1]+raio];
+
+   function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function dispara(evento) {
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+        
+        if(x > confereX[0] && x < confereX[1] && y > confereY[0] && y < confereY[1]){
+            alert('acertou');
+            
+
+        }
+
+    }
+    function limpaTela() {
+
+        pincel.clearRect(5, 5, 590, 390);
+    }
+    function atualizaTela() {
+        centro.clear();
+        limpaTela();
+        sorteiaNumeroX();
+        sorteiaNumeroY();
+        console.log(centro);
+        
+        desenhaCirculo(centro[0],centro[1], raio + 20, 'red'); 
+        desenhaCirculo(centro[0],centro[1], raio + 10, 'white');
+        desenhaCirculo(centro[0],centro[1], raio, 'red');
+    }
+    //setInterval(atualizaTela, 1000);
+    tela.onclick = dispara;
+
+ 
+</script>
